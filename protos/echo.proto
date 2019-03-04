@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package echo;
+
+message Data {
+    string hoge = 1;
+    string fuga = 2;
+    string piyo = 3;
+}
+
+service EchoService {
+    rpc Send(Data) returns (Data);
+}

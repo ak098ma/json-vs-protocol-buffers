@@ -1,0 +1,43 @@
+version: '3'
+services:
+  common:
+    build:
+      context: ./
+      dockerfile: ./common/Dockerfile
+    image: jvpb/common
+  client:
+    build:
+      context: ./
+      dockerfile: ./client/Dockerfile
+    depends_on:
+      - common
+    image: jvpb/client
+    ports:
+      - "3000:3000"
+  json-server:
+    build:
+      context: ./
+      dockerfile: ./json-server/Dockerfile
+    depends_on:
+      - common
+    image: jvpb/json-server
+    ports:
+      - "3001:3001"
+  proxy-server:
+    build:
+      context: ./
+      dockerfile: ./proxy-server/Dockerfile
+    image: jvpb/proxy-server
+    ports:
+      - "3002:3002"
+    links:
+      - grpc-server
+  grpc-server:
+    build:
+      context: ./
+      dockerfile: ./grpc-server/Dockerfile
+    depends_on:
+      - common
+    image: jvpb/grpc-server
+    ports:
+      - "3003:3003"

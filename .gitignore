@@ -1,0 +1,8 @@
+# IntelliJ IDEA
+.idea/
+
+# yarn packages
+node_modules/
+
+# Next.js
+.next/
