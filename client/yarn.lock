@@ -2108,10 +2108,20 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+google-protobuf@3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.7.0.tgz#5c7228b68d24a7c93706c1a44efdb8ee883cea43"
+  integrity sha512-QZwgOBPfvnAdnYA+tizEs9CbE42mMXFPGCmYAh0podfJbGPkBIEC6vR9gMSGxjaSB8t2GCGLhOHiX9OrseOWCA==
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.4:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
+
+grpc-web@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/grpc-web/-/grpc-web-1.0.3.tgz#494949abef6bc877c5b6bd4291773e47ac2a44cc"
+  integrity sha512-C1mk+55YgPAmU4OK36Fm+nZoo62KTmjSF4/aUHT/yfpKFKTR6r/O8aavyRWaXUT83EcsoZoQaWYWY/2hrOSRJg==
 
 has-flag@^3.0.0:
   version "3.0.0"

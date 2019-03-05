@@ -1,4 +1,8 @@
 import { Component, Fragment } from 'react';
+const { Data } = require('../protos/echo_pb.js');
+const { EchoServicePromiseClient } = require('../protos/echo_grpc_web_pb.js');
+const grpc = {};
+grpc.web = require('grpc-web');
 
 const data = {
   hoge: 'hoge',
@@ -15,12 +19,18 @@ export default class Home extends Component {
     this.json = this.json.bind(this);
     this.protocolBuffers = this.protocolBuffers.bind(this);
 
+    this.client = null;
+
     this.state = {
       isInProgress: false,
       tryCount: 1000,
       jsonElapsedTime: null,
       grpcElapsedTime: null,
     };
+  }
+
+  componentDidMount() {
+    this.client = new EchoServicePromiseClient('http://localhost:3002');
   }
 
   render() {
@@ -57,7 +67,7 @@ export default class Home extends Component {
     this.setState({ isInProgress: true, jsonElapsedTime: null, grpcElapsedTime: null });
     this.json(Date.now(), 0, tryCount)
       .then(jsonElapsedTime => this.setState({ jsonElapsedTime }))
-      .then(this.protocolBuffers(Date.now(), 0, tryCount))
+      .then(() => this.protocolBuffers(Date.now(), 0, tryCount))
       .then(grpcElapsedTime => this.setState({ isInProgress: false, grpcElapsedTime }));
   }
 
@@ -74,6 +84,14 @@ export default class Home extends Component {
   }
 
   protocolBuffers(startTime, count, tryCount) {
-    return Promise.resolve(Date.now() - startTime);
+    if (count < tryCount) {
+      const data = new Data();
+      data.setHoge('hoge');
+      data.setFuga('fuga');
+      data.setPiyo('piyo');
+      return this.client.send(data).then(() => this.protocolBuffers(startTime, count + 1, tryCount));
+    } else {
+      return Promise.resolve(Date.now() - startTime);
+    }
   }
 }

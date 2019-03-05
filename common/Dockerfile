@@ -16,6 +16,6 @@ protoc-gen-grpc-web-1.0.3-linux-x86_64 -o /usr/local/bin/protoc-gen-grpc-web && 
 
 COPY protos/echo.proto /protos/echo.proto
 
-RUN protoc -I=/protos echo.proto \
-  --js_out=import_style=commonjs:/protos \
-  --grpc-web_out=import_style=commonjs,mode=grpcwebtext:/protos
+RUN mkdir -p /app/protos && protoc -I=/protos echo.proto \
+  --js_out=import_style=commonjs:/app/protos \
+  --grpc-web_out=import_style=commonjs,mode=grpcwebtext:/app/protos
